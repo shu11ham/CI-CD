@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>I Am Not Done Yet</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #ffffff;
+      height: 100vh;
+      font-family: 'Montserrat', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 4rem;
+      letter-spacing: 2px;
+      text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.6);
+      margin-bottom: 20px;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    #countdown {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      color: #FFD700;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .btn {
+      padding: 15px 30px;
+      font-size: 1rem;
+      font-weight: bold;
+      background-color: #ff5722;
+      border: none;
+      border-radius: 30px;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+      text-transform: uppercase;
+      animation: fadeIn 2.5s ease-in-out;
+    }
+
+    .btn:hover {
+      background-color: #e64a19;
+      transform: scale(1.05);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Not Done Yet!!!</h1>
+  <div id="countdown">Loading countdown...</div>
+  <button class="btn" onclick="window.location.href='https://www.linkedin.com/in/shubham-gupta-5a49a834a '">Stay Tuned</button>
+
+  <script>
+    // Countdown Timer: 7 days from now
+    const countdown = document.getElementById("countdown");
+    const now = new Date().getTime();
+    const launchDate = new Date(now + 7 * 24 * 60 * 60 * 1000).getTime();
+
+    const interval = setInterval(() => {
+      const currentTime = new Date().getTime();
+      const distance = launchDate - currentTime;
+
+      if (distance < 0) {
+        clearInterval(interval);
+        countdown.innerHTML = "The wait is over!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s remaining`;
+    }, 1000);
+  </script>
+</body>
+</html>
+
